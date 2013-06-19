@@ -1,0 +1,20 @@
+{
+  "name": "heigvd-notes",
+  "version": "0.1.0",
+  "author": "Leeroy Brun <leeroy.brun@gmail.com>",
+  "description": "Simple application to scrape and parse your HEIG-VD (FEE) notes from the intranet. It will then generate an excel file",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leeroybrun/node-allocine-api.git"
+  }, 
+  "license": "MIT",
+  "engines": [
+    "node"
+  ],
+  "dependencies" : {
+        "request":  "*",
+        "cheerio":  "*",
+        "xlsx-writer": "*"
+  },
+  "main": "./getNotes.js"
+}
