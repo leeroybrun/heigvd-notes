@@ -141,16 +141,20 @@ def writeXlsx(notes):
 			worksheet.write_string(xlsxRow, 0, unit['name'])
 
 			nbNotes = len(unit['year']['notes'])
-			for xlsxCol in range(1, 10, 2):
-				if xlsxCol <= nbNotes:
-					worksheet.write_number(xlsxRow, xlsxCol, unit['year']['notes'][xlsxCol - 1]['note'])
-					worksheet.write_number(xlsxRow, xlsxCol+1, unit['year']['notes'][xlsxCol - 1]['coeff'])
+
+			xlsxCol = 1
+			for noteI in range(0, 4):
+				if noteI <= nbNotes - 1:
+					worksheet.write_number(xlsxRow, xlsxCol, unit['year']['notes'][noteI]['note'])
+					worksheet.write_number(xlsxRow, xlsxCol+1, unit['year']['notes'][noteI]['coeff'])
 				else:
 					worksheet.write_blank(xlsxRow, xlsxCol, '')
 					worksheet.write_blank(xlsxRow, xlsxCol+1, '')
+				
+				xlsxCol += 2
 
 			rowN = str(xlsxRow+1)
-			
+
 			worksheet.write_formula(xlsxRow, xlsxCol + 2, '=B'+rowN+'*C'+rowN +'+D'+rowN+'*E'+rowN +'+F'+rowN+'*G'+rowN +'+H'+rowN+'*I'+rowN +'+J'+rowN+'*K'+rowN)
 			worksheet.write_number(xlsxRow, xlsxCol + 3, unit['year']['coeff'])
 
