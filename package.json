@@ -14,7 +14,7 @@
   "dependencies" : {
         "request":  "*",
         "cheerio":  "*",
-        "xlsx-writer": "*"
+        "officegen": "*"
   },
   "main": "./getNotes.js"
 }
