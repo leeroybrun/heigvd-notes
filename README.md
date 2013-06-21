@@ -4,8 +4,18 @@ Ce script permet de récupérer ses notes de modules directement depuis l'intran
 
 Il est ensuite possible de modifier les valeurs afin de prévoir facilement ses notes finales de modules.
 
-## Todo :
-- Calcul de la moyenne générale
-- Ajouter conditions aux calculs (pour ne pas fausser la moyenne si une note/exa n'est pas rempli)
-- Mise en forme de la feuille de calculs
-- Mise en forme conditionnelle en fonction des résultats
+Pour l'utiliser, il faut installer les modules Python suivants (avec pip ou easy_install) :
+
+```shell
+pip install requests
+pip install XlsxWriter
+pip install beautifulsoup4
+```
+
+Il suffit ensuite d'appeler le script en lui passant en paramètre votre nom d'utilisateur et mot de passe pour l'intranet :
+
+```shell
+python getNotes.py prenom.nom motdepasse
+```
+
+Il générera ensuite un fichier `Notes.xlsx` dans le dossier en cours.
