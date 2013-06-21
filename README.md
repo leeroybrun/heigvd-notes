@@ -18,4 +18,4 @@ Il suffit ensuite d'appeler le script en lui passant en paramètre votre nom d'u
 python getNotes.py prenom.nom motdepasse
 ```
 
-Il générera ensuite un fichier `Notes.xlsx` dans le dossier en cours.
+Il générera alors un fichier `Notes.xlsx` dans le dossier en cours.
