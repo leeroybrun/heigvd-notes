@@ -2,44 +2,25 @@
 
 import sys
 import re
-import pycurl
-import cStringIO
-from urllib import urlencode
+import requests
 from bs4 import BeautifulSoup
 from xlsxwriter.workbook import Workbook
 
 def login(username, password):
-	print username 
-	print password
+	r = requests.post('https://fee.heig-vd.ch/etudiants/index.php', data={'username': username, 'password': password})
 
-	c = pycurl.Curl()
-
-	data = cStringIO.StringIO()
-
-	c.setopt(c.URL, 'https://fee.heig-vd.ch/etudiants/index.php')
-	c.setopt(c.POSTFIELDS, urlencode({'username': username, 'password': password}))
-	c.setopt(c.COOKIEFILE, '')
-	c.setopt(c.WRITEFUNCTION, data.write)
-	c.perform()
-
-	soup = BeautifulSoup(data.getvalue())
-	data.close()
+	soup = BeautifulSoup(r.text)
 
 	if soup.find('a', {'href': '/etudiants/index.php?delog=true'}) != None:
-		return c
+		return r
 	else:
 		return False
 
-def getNotes(c):
+def getNotes(prevR):
 
-	data = cStringIO.StringIO()
+	r = requests.get('https://fee.heig-vd.ch/etudiants/bulletinNotes.php', cookies=prevR.cookies)
 
-	c.setopt(c.URL, 'https://fee.heig-vd.ch/etudiants/bulletinNotes.php')
-	c.setopt(c.WRITEFUNCTION, data.write)
-	c.perform()
-
-	soup = BeautifulSoup(data.getvalue())
-	data.close()
+	soup = BeautifulSoup(r.text)
 
 	notes = []
 
@@ -169,12 +150,12 @@ def writeXlsx(notes):
 	workbook.close()
 
 
-c = login(sys.argv[1], sys.argv[2])
+r = login(sys.argv[1], sys.argv[2])
 
-if c != False:
+if r != False:
 	print "Login successfull"
 
-	notes = getNotes(c)
+	notes = getNotes(r)
 
 	writeXlsx(notes)
 else:
