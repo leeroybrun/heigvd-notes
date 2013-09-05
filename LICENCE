@@ -1,26 +1,4 @@
-# HEIG-VD (FEE) notes planner
-
-Ce script permet de récupérer ses notes de modules directement depuis l'intranet FEE de la HEIG-VD puis de les enregistrer dans un fichier Excel.
-
-Le fichier est généré avec les formules qui permettent de calculer les moyennes finales. Il est donc facile d'ajouter ou modifier des valeurs afin de prévoir ses notes finales de modules.
-
-Pour l'utiliser, il faut tout d'abord installer les dépendances :
-
-```shell
-python setup.py install
-```
-
-Il suffit ensuite d'appeler le script en lui passant en paramètre votre nom d'utilisateur et mot de passe pour l'intranet :
-
-```shell
-python getNotes.py prenom.nom motdepasse
-```
-
-Il générera alors un fichier `Notes.xlsx` dans le dossier en cours.
-
-Licence
-======================
-(The MIT License)
+The MIT License (MIT)
 
 Copyright (C) 2013 Leeroy Brun, www.leeroy.me
 
